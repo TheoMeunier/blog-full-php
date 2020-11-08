@@ -15,7 +15,7 @@ $whoops->register();
 // réorganisation des route
 $router = new App\Router(dirname(__DIR__) . '/views');
 $router
-    ->get('/blog', 'post/index', 'blog')
+    ->get('/', 'post/index', 'home')
     ->get('/blog/category', 'category/show', 'category')
     ->run();
 

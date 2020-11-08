@@ -22,5 +22,16 @@ composer require symfony/var-dumper
 composer require symfony/var-dumper
 ```
 
+ ## 2.remplir la bd 
+ 
+ utiliser de faker pour générer des donner aléatoire dans différents formats
+ 
+```
+composer require fzaninotto/faker:1.8.0
+```
+On supprimer intégralement la bas de donner 
+
+Et on géner des donner aléatoirement avec des boucles
+
  
 
