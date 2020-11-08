@@ -32,11 +32,18 @@ class Router
 
     }
 
+    //on crée notre propre fonction de route
+    public function url(string $name, array $params = [])
+    {
+        return $this->router->generate($name, $params);
+    }
+
     //cette fonction de charge de faire la logique qui fais les require
     public function run(): self
     {
         $match = $this->router->match();
         $view = $match['target'];
+        $router = $this;
         ob_start();
 
         require $this->viewPath . DIRECTORY_SEPARATOR . $view. '.php';

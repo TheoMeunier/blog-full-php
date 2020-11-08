@@ -18,7 +18,7 @@ class AltoRouter {
 	protected $basePath = '';
 
 	/**
-	 * @var array Array of default match types (regex helpers)
+	 * @var array Array of default match types (regex Helpers)
 	 */
 	protected $matchTypes = array(
 		'i'  => '[0-9]++',
