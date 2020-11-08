@@ -3,17 +3,24 @@
 - serveur web : nginx 
     - http://localhost:8181
     
- ## Configuration 
+ ## Formation 
  
- - Crée un dossier public point d'entrée du site
- - Mettre son index dans le dossier public 
-#
+ ### 1. route
  
-### Css 
+mise en place sur pojet, mise en place de plusieurs bundel 
 
- crée un fichier css avec le quel on met un fichier `style.css`
+- pour avoir un beau système de route 
+```
+composer require altorouter/autorouter:1.2.0
+```
+- pour avoir le système de debug de symfony
+```
+composer require symfony/var-dumper
+```
+- pour avoir un jolie système de debug php sur le sitre
+```
+composer require symfony/var-dumper
+```
+
  
- pour importer un fichier css on fait 
- ```
-@import url('reset.css');
-``` 
+
