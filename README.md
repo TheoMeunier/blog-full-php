@@ -43,5 +43,10 @@ Mettre des information dans la base de donner dans un liens
 
 Comment definir des élément des la basse de donner 
 
+
+## 4. Pagination
+
+On a vu comment mettre en plage une pagination, ainsi que bloquer une url ou de la retunée, 
+et mise en place de la pagination sur la index.php
  
 
