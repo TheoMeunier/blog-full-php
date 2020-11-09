@@ -10,7 +10,7 @@ $title = 'Mon blog';
 $pdo = Conection::getPDO();
 
 //numéro de la page courrante, la page par defaut est 1
-$currentPage = Url::getInt('page', 1);
+$currentPage = Url::getPosstiveInt('page', 1);
 
 // si la page <= 0 alors on returne une erreur
 if ($currentPage <= 0) {

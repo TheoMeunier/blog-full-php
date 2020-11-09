@@ -63,3 +63,8 @@ pour les réutiliser plus part dans l'application
 on a vu comment mettre afficher  un seul post sur une page, avec url qui a pour paramettre 
 un slug et un id, puis on a afficher les catégorie relier au post
 
+
+## 7. Page category post
+
+Listing dans des catégory sur la page (pas grand choses de nouveau par rapport au listing de post)
+
