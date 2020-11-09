@@ -9,6 +9,27 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
 $whoops->register();
 
+if (isset($_GET['page']) && $_GET['page'] == '1'){
+    //réecrire l'url sans le paramètre page
+    $rui = $_SERVER['REQUEST_URI'];
+    $url = explode('?', $_SERVER['REQUEST_URI'])['0'];
+
+    //on recupere les paramettre
+    $get = $_GET;
+    unset($get['page']);
+
+    //on fais la 2eme partie du lien
+    $query = http_build_query($get);
+    // si query est vide alors on ne touche a rien
+    if (!empty($query)){
+        $uri = $uri . '?' . $query;
+    }
+    http_response_code(301);
+    header('location' . $uri);
+    exit();
+
+}
+
 //on demarre le routeur
 /*$router = new AltoRouter();*/
 

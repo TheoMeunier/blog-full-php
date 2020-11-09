@@ -48,5 +48,10 @@ Comment definir des élément des la basse de donner
 
 On a vu comment mettre en plage une pagination, ainsi que bloquer une url ou de la retunée, 
 et mise en place de la pagination sur la index.php
+
  
+## 5. Revu de la logique de la pagination 
+
+on a revu la logique de la pagination pour alleger l'index.php, donc nous avons crée des fonction 
+pour les réutiliser plus part dans l'application
 

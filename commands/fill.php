@@ -1,13 +1,15 @@
 <?php
+
+use App\Conection;
+
 require_once $_SERVER['DOCUMENT_ROOT'] . "variables.php";
 
 require dirname(__DIR__). '/vendor/autoload.php';
 
 $faker = Faker\Factory::create('fr_FR');
 
-$pdo = new PDO("mysql:dbname=" . DB_NAME . ";host=" . DB_HOST, DB_USERNAME, DB_PASSWORD, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+//on ce connecter a la base de donnée
+$pdo = Conection::getPDO();
 
 $pdo->exec('SET FOREIGN_KEY_CHECKS = 0');
 $pdo->exec('TRUNCATE TABLE post_category');
