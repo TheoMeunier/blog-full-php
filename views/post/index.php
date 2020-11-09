@@ -20,7 +20,7 @@ if (!filter_var($page, FILTER_VALIDATE_INT)){
 }
 
 //si dans l'url page=1 alors on ne met rien
-if ($page === 1){
+if ($page === '1'){
     header('Location :' . $router->url('home'));
     http_response_code(301);
     exit();
