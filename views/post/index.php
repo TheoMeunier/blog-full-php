@@ -54,7 +54,7 @@ $posts = $query->fetchAll(PDO::FETCH_CLASS, Post::class);
     <?php endforeach ?>
 </div>
 
-<!-- mise ne plage de la pagination -->
+<!-- mise ne place de la pagination -->
 <div class="d-flex justify-content-between my-4">
     <?php if ($currentPage > 1): ?>
         <!-- on sauvegarde le lien -->
