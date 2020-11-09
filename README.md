@@ -55,3 +55,11 @@ et mise en place de la pagination sur la index.php
 on a revu la logique de la pagination pour alleger l'index.php, donc nous avons crée des fonction 
 pour les réutiliser plus part dans l'application
 
+
+
+ 
+## 6. Page category post
+
+on a vu comment mettre afficher  un seul post sur une page, avec url qui a pour paramettre 
+un slug et un id, puis on a afficher les catégorie relier au post
+
