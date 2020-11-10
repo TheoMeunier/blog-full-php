@@ -1,8 +1,7 @@
 <?php
 
 use App\Conection;
-use App\Model\Category;
-use App\Model\Post;
+use App\Table\PostTable;
 
 
 // on converti l'id en entier
@@ -11,20 +10,10 @@ $slug = $params['slug'];
 
 //on recupere l'ariticle qui conrespond
 $pdo = Conection::getPDO();
-$query = $pdo->prepare('SELECT * FROM post WHERE id = :id');
-//on excuse la requete
-$query->execute(['id' => $id]);
-//on recupere les resultats
-$query->setFetchMode(PDO::FETCH_CLASS, Post::class);
 
-// on type la variable
-/** @var Post|false */
-$post = $query->fetch();
-
-//si aucun resultat est renvoyer alors on revoye une execption
-if ($post === false) {
-    throw new Exception("Aucun article ne correspond a cette article");
-}
+//on appel la methode find dans le PostTable
+$post = (new PostTable($pdo))->find($id);
+(new \App\Table\CategoryTable($pdo))->hydratePosts([$post]);
 
 //si le slug de l'url est pas = a celui de l'article alors on returne une erreur
 if ($post->getSlug() !== $slug) {
@@ -32,20 +21,6 @@ if ($post->getSlug() !== $slug) {
     http_response_code(301);
     header('location:' . $url);
 }
-
-//on recupere les category
-//on change la requete sql
-$query = $pdo->prepare('
-SELECT c.id, c.slug, c.name 
-FROM post_category pc 
-JOIN category c ON pc.category_id = c.id
-WHERE pc.post_id = :id');
-
-$query->execute(['id' => $post->getId()]);
-//on recupere les info
-$query->setFetchMode(PDO::FETCH_CLASS, Category::class);
-/** @var Category[] */
-$categories = $query->fetchAll()
 ?>
 
 
@@ -54,7 +29,7 @@ $categories = $query->fetchAll()
 <!-- on affiche la date et on la formate -->
 <p class="text-muted"><?= $post->getCreatedAt()->format('d F Y') ?></p>
 
-<?php foreach ($categories as $k => $category):
+<?php foreach ($post->getCategories() as $k => $category):
    if ($k > 0):
         echo ', ';
   endif?>

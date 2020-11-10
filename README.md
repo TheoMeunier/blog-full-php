@@ -76,3 +76,9 @@ on a fais quelque choses de propre)
 ## 8. Revu de la pagination 
 
 on a vu comment importer les noms des category sur les cads de posts. Et nous avons aléger le code 
+
+
+## 9. Revu de la pagination 
+
+Nous avons ceée des controller pour allerger notre code, et ainsi réutiliser les tables un px partout sur notre 
+site internet 
