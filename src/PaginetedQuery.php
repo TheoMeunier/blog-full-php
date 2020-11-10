@@ -12,49 +12,51 @@ class PaginetedQuery
 
     private $query;
     private $queryCount;
-    private $classMapping;
     private $pdo;
     private $perPage;
     private $ĉount;
+    private $items;
 
 
     public function __construct(
         string $query,
         string $queryCount,
-        string $classMapping,
         ?\PDO $pdo = null,
         $perPage = 12
     )
     {
         $this->query = $query;
         $this->queryCount = $queryCount;
-        $this->classMapping = $classMapping;
         $this->pdo = $pdo ?: Conection::getPDO();
         $this->perPage = $perPage;
     }
 
     //on crée la premiere methode
-    public function getItems(): array
+    public function getItems(string $classMapping): array
     {
-        //je recupère la page courrante
-        $currentPage = $this->getCurrentPage();
+        // on lui demande d'utiliser une seul fois cette fonction
+        if ($this->items === null){
 
-        $pages = $this->getpages();
+            //je recupère la page courrante
+            $currentPage = $this->getCurrentPage();
 
-        // si la page la page courrente > au nombre de page alors on returne une exeption
-        if ($currentPage > $pages) {
-            throw new Exception('Cette page n\'existe pas');
+            $pages = $this->getpages();
+
+            // si la page la page courrente > au nombre de page alors on returne une exeption
+            if ($currentPage > $pages) {
+                throw new Exception('Cette page n\'existe pas');
+            }
+            //on calcule l'offset
+            $offset = $this->perPage * ($currentPage - 1);
+
+            //on fait la requete sql pour afficher 12 post; je vais faire une liaison
+            $this->items = $this->pdo->query(
+                $this->query .
+                " LIMIT {$this->perPage} OFFSET $offset")
+                //on recupère l'ensemble des article
+                ->fetchAll(PDO::FETCH_CLASS, $classMapping);
         }
-        //on calcule l'offset
-        $offset = $this->perPage * ($currentPage - 1);
-
-        //on fait la requete sql pour afficher 12 post; je vais faire une liaison
-        return $this->pdo->query(
-            $this->query .
-            " LIMIT {$this->perPage} OFFSET $offset")
-            //on recupère l'ensemble des article
-            ->fetchAll(PDO::FETCH_CLASS, $this->classMapping);
-
+        return $this->items;
     }
 
     //on gènère les liens presendent
@@ -66,8 +68,7 @@ class PaginetedQuery
 
 
         //si currente page supérieur 2 tu lui met la page currente -1
-        if ($currentPage > 2) $link .= "?page" . ($currentPage - 1);
-        var_dump($link);
+        if ($currentPage > 2) $link .= "?page=" . ($currentPage - 1);
 
         //on utilise de la syntax RRdoc
         return <<<HTML
@@ -82,6 +83,7 @@ HTML;
         $pages = $this->getPages();
 
         if ($currentPage >= $pages) return null;
+
         $link .= "?page=" . ($currentPage + 1);
         //on utilise de la syntax RRdoc
         return <<<HTML
@@ -98,7 +100,6 @@ HTML;
     //on méthode pour calculer le nombre de page
     private function getPages(): int
     {
-
         //si count est défini alors tu px continu avec
         if ($this->count === null) {
 

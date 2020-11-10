@@ -45,18 +45,16 @@ $paginatedQuery = new PaginetedQuery(
             WHERE pc.category_id = {$category->getID()}
             ORDER BY created_at DESC ",
 "SELECT COUNT(category_id) FROM post_category WHERE category_id = {$category->getID()}",
-            Post::class
 );
 
 /** @var Psot[] */
 //on recupére l'ensemble des èlements
-$posts= $paginatedQuery->getItems();
+$posts= $paginatedQuery->getItems(Post::class);
 //on sauvegarde le lien
 $link = $router->url('category', ['id' => $category->getID(), 'slug' => $category->getSLUG()]);
 ?>
 
 <h1><?= e($title) ?></h1>
-
 
 <div class="row">
     <?php foreach ($posts as $post): ?>

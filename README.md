@@ -68,3 +68,7 @@ un slug et un id, puis on a afficher les catégorie relier au post
 
 Listing dans des catégory sur la page (pas grand choses de nouveau par rapport au listing de post)
 
+## 8. Page category post
+
+gros refont de la pafination, crée un controller avec tout les fonction de la pagination(
+on a fais quelque choses de propre)
