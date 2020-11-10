@@ -32,6 +32,16 @@ class Router
 
     }
 
+
+    public function post(string $url, string $view, string $name = null): self
+    {
+        $this->router->map('POST', $url, $view, $name);
+
+        // toute les methode renvoye this
+        return $this;
+
+    }
+
     //on crée notre propre fonction de route
     public function url(string $name, array $params = [])
     {

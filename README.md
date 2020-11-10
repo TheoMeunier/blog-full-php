@@ -79,3 +79,9 @@ on a vu comment importer les noms des category sur les cads de posts. Et nous av
 
 Nous avons ceée des controller pour allerger notre code, et ainsi réutiliser les tables un px partout sur notre 
 site internet 
+
+
+## 9. Administation
+
+Nous avons lister des articles et mise en place le button delete pour supprimer un acticle, 
+prepare les page pour crée un artrivle et editer un article et ainsi prepare le Autj pour l'administation 
