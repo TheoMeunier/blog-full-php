@@ -58,7 +58,7 @@ pour les réutiliser plus part dans l'application
 
 
  
-## 6. Page category post
+## 6. Page post
 
 on a vu comment mettre afficher  un seul post sur une page, avec url qui a pour paramettre 
 un slug et un id, puis on a afficher les catégorie relier au post
@@ -68,7 +68,11 @@ un slug et un id, puis on a afficher les catégorie relier au post
 
 Listing dans des catégory sur la page (pas grand choses de nouveau par rapport au listing de post)
 
-## 8. Page category post
+## 8. Revu de la pagination 
 
 gros refont de la pafination, crée un controller avec tout les fonction de la pagination(
 on a fais quelque choses de propre)
+
+## 8. Revu de la pagination 
+
+on a vu comment importer les noms des category sur les cads de posts. Et nous avons aléger le code 
