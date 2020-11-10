@@ -54,9 +54,6 @@ et mise en place de la pagination sur la index.php
 
 on a revu la logique de la pagination pour alleger l'index.php, donc nous avons crée des fonction 
 pour les réutiliser plus part dans l'application
-
-
-
  
 ## 6. Page post
 
