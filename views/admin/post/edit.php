@@ -1,6 +1,7 @@
 <?php
 
 use App\Conection;
+use App\HTML\Form;
 use App\Table\PostTable;
 use App\Validator;
 
@@ -18,9 +19,14 @@ if (!empty($_POST)) {
     Validator::lang('fr');
     //on lui definir quelque mot en français
     $v = new validator($_POST);
-    $v->rule('required', 'name');
-    $v->rule('lengthBetween', 'name', 3, 250);
-    $post->setName($_POST['name']);
+    //on met des contraintes a des champs
+    $v->rule('required', ['name', 'slug']);
+    $v->rule('lengthBetween', ['name', 'slug'], 3, 250);
+    $post
+        ->setName($_POST['name'])
+        ->setContent($_POST['content'])
+        ->setSlug($_POST['slug'])
+        ->setCreatedAt($_POST['created_at']);
     //on update si nous avons pas d'erreur
     if ($v->validate()) {
         $postTable->update($post);
@@ -29,6 +35,8 @@ if (!empty($_POST)) {
         $errors = $v->errors();
     }
 }
+
+$form = new Form($post, $errors)
 ?>
 
 
@@ -48,15 +56,9 @@ if (!empty($_POST)) {
 <h1>Editer l'article <?= e($post->getName()) ?></h1>
 
 <form action="" method="POST">
-    <div class="form-group">
-        <label for="name">Titre</label>
-        <input type="text" class="form-control <?= isset($errors['name']) ? 'is-invalid' : '' ?>" name="name"
-               value="<?= e($post->getName()) ?>" required>
-        <?php if(isset($errors['name'])): ?>
-            <div class="invalid-feedback">
-                <?= implode('<br>', $errors['name']) ?>
-            </div>
-        <?php endif ?>
-    </div>
+    <?=  $form->input('name', 'Titre'); ?>
+    <?= $form->input('slug', 'URL'); ?>
+    <?= $form->textarea('content', 'Contenu'); ?>
+    <?= $form->input('created_at', 'Date de création'); ?>
     <button class="btn btn-primary">Modifier</button>
 </form>

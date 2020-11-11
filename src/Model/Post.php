@@ -32,6 +32,11 @@ class Post
         return $this;
     }
 
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
     public function getFormattedContent (): ?string
     {
         return nl2br(e($this->content));
@@ -51,9 +56,25 @@ class Post
         return new DateTime($this->created_at);
     }
 
+
+    //on definie que c'est un datetime
+    public function setCreatedAt(string $date): self
+    {
+        $this->created_at = $date;
+
+        return $this;
+    }
+
     public function getSlug(): ?string
     {
         return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     //on lui difinie qui aura un entier ou il sera null

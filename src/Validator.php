@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Valitron\Validator as ValitronValidator;
+use Valitron\Validator as ValitronValidatorr;
 
-class Validator extends ValitronValidator
+class Validator extends ValitronValidatorr
 {
     protected function checkAndSetLabel($field, $message, $params)
     {

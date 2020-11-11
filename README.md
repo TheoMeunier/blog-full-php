@@ -94,3 +94,10 @@ mettre une router en GET et POST et nous avons aussi utiliser un bundel pour all
 ```
 composer require vlucas/valitron:1.4.5
 ``` 
+
+
+
+## 11. Gestion des formulaires
+
+Nous avons crée plusieurs champs pour mosdier l'article et nous avons un controller pour la gestion des formulaire 
+et nous avons aussi changer la requet SQL pour update
