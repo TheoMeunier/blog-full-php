@@ -42,6 +42,16 @@ class Router
 
     }
 
+    //fonction qui fais passer les url en post et en get
+    public function match(string $url, string $view, string $name = null): self
+    {
+        $this->router->map('POST|GET', $url, $view, $name);
+
+        // toute les methode renvoye this
+        return $this;
+
+    }
+
     //on crée notre propre fonction de route
     public function url(string $name, array $params = [])
     {

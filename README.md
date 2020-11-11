@@ -84,4 +84,13 @@ site internet
 ## 9. Administation
 
 Nous avons lister des articles et mise en place le button delete pour supprimer un acticle, 
-prepare les page pour crée un artrivle et editer un article et ainsi prepare le Autj pour l'administation 
+prepare les page pour crée un article
+
+
+## 10. Edition d'un article
+
+Nous avons vu comment editer un article (partie un px complique beaucoup de choses a retenir) aussi nous avons vu comment
+mettre une router en GET et POST et nous avons aussi utiliser un bundel pour allèger notre validation 
+```
+composer require vlucas/valitron:1.4.5
+``` 
