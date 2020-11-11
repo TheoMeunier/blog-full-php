@@ -4,7 +4,6 @@ use App\Auth;
 use App\Conection;
 use App\Table\PostTable;
 
-
 Auth::check();
 
 $title = "Administration";
