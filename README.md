@@ -70,24 +70,24 @@ Listing dans des catégory sur la page (pas grand choses de nouveau par rapport 
 gros refont de la pafination, crée un controller avec tout les fonction de la pagination(
 on a fais quelque choses de propre)
 
-## 8. Revu de la pagination 
+## 9. Ajout des noms de category dans les card
 
 on a vu comment importer les noms des category sur les cads de posts. Et nous avons aléger le code 
 
 
-## 9. Revu de la pagination 
+## 10. Création de class
 
 Nous avons ceée des controller pour allerger notre code, et ainsi réutiliser les tables un px partout sur notre 
 site internet 
 
 
-## 9. Administation
+## 11. Administation
 
 Nous avons lister des articles et mise en place le button delete pour supprimer un acticle, 
 prepare les page pour crée un article
 
 
-## 10. Edition d'un article
+## 12. Edition d'un article
 
 Nous avons vu comment editer un article (partie un px complique beaucoup de choses a retenir) aussi nous avons vu comment
 mettre une router en GET et POST et nous avons aussi utiliser un bundel pour allèger notre validation 
@@ -96,7 +96,7 @@ composer require vlucas/valitron:1.4.5
 ``` 
 
 
-## 11. Gestion des formulaires
+## 13. Gestion des formulaires
 
 Nous avons crée plusieurs champs pour mosdier l'article et nous avons un controller pour la gestion des formulaire 
 et nous avons aussi changer la requet SQL pour update
