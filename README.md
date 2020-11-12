@@ -110,3 +110,7 @@ Nous avons vu comment simplifier le code pour validé notre formulaire
 
 Nous avons vu comment crée un article en modifiant la requet sql et nous avons aussi mit un boutons sur la page des
 listing
+
+## 15. Gestion des catégories
+Nous avons realiser la partie pour la gestion des categories, rien de trés compliqer nous avons deja eux en plusieurs 
+etapes 

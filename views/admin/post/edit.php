@@ -1,10 +1,15 @@
 <?php
 
+use App\Auth;
 use App\Conection;
 use App\HTML\Form;
 use App\ObjectHelper;
 use App\Table\PostTable;
 use App\Validators\PostValidator;
+
+
+Auth::check();
+
 
 $pdo = Conection::getPDO();
 $postTable = new PostTable($pdo);
@@ -23,7 +28,7 @@ if (!empty($_POST)) {
     ObjectHelper::hydrate($post, $_POST, ['name', 'content', 'slug', 'created_at']);
     //on update si nous avons pas d'erreur
     if ($v->validate()) {
-        $postTable->update($post);
+        $postTable->updatePost($post);
         $success = true;
     } else {
         $errors = $v->errors();
@@ -37,12 +42,6 @@ $form = new Form($post, $errors)
 <?php if ($success): ?>
     <div class="alert alert-success">
         L'article a bien ète modifier
-    </div>
-<?php endif ?>
-
-<?php if (isset($_GET['created'])): ?>
-    <div class="alert alert-success">
-        L'article a bien ète crée
     </div>
 <?php endif ?>
 

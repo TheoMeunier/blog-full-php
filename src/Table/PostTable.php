@@ -15,47 +15,27 @@ class PostTable extends Table
     protected $class = Post::class;
 
     //on change les donnée de l'aticle
-    public function update(Post $post): void
+    public function updatePost(Post $post): void
     {
-        $query = $this->pdo->prepare("UPDATE {$this->table} SET name = :name, slug = :slug, created_at = :created,
-content = :content WHERE id = :id");
-        $ok = $query->execute([
-            'id' => $post->getID(),
+         $this->update([
             'name'=> $post->getName(),
             'slug'=> $post->getSlug(),
             'content'=> $post->getContent(),
-            'created' => $post->getCreatedAt()->format('Y-m-d H:i:s')
-        ]);
-        if ($ok === false){
-            throw new \Exception("Imposssible de modifier l'enregistrement $id dans la table {$this->table}");
-        }
+            'created_at' => $post->getCreatedAt()->format('Y-m-d H:i:s')
+        ], $post->getID());
     }
 
     //on crée un article
-    public function create(Post $post): void
+    public function createPost(Post $post): void
     {
-        $query = $this->pdo->prepare("INSERT INTO {$this->table} SET name = :name, slug = :slug, created_at = :created,
-content = :content");
-        $ok = $query->execute([
+          $id = $this->create([
             'name'=> $post->getName(),
             'slug'=> $post->getSlug(),
             'content'=> $post->getContent(),
-            'created' => $post->getCreatedAt()->format('Y-m-d H:i:s')
+            'created_at' => $post->getCreatedAt()->format('Y-m-d H:i:s')
         ]);
-        if ($ok === false){
-            throw new \Exception("Imposssible de crée l'enregistrement $id dans la table {$this->table}");
-        }
         //on recupére l'id du post qu'on viens de créev
-        $post->setID($this->pdo->lastInsertId());
-    }
-
-    public function delete(int $id): void
-    {
-        $query = $this->pdo->prepare("DELETE FROM {$this->table} WHERE id = ?");
-        $ok = $query->execute([$id]);
-        if ($ok === false){
-            throw new \Exception("Imposssible de supprimer l'enregistrement $id dans la table {$this->table}");
-        }
+        $post->setID($id);
     }
 
     public function findPaginated()

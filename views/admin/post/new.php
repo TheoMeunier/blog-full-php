@@ -1,11 +1,15 @@
 <?php
 
+use App\Auth;
 use App\Conection;
 use App\HTML\Form;
 use App\Model\Post;
 use App\ObjectHelper;
 use App\Table\PostTable;
 use App\Validators\PostValidator;
+
+
+Auth::check();
 
 $errors = [];
 $post = new Post();
@@ -23,7 +27,7 @@ if (!empty($_POST)) {
     ObjectHelper::hydrate($post, $_POST, ['name', 'content', 'slug', 'created_at']);
     //on update si nous avons pas d'erreur
     if ($v->validate()) {
-        $postTable->create($post);
+        $postTable->createPost($post);
         header('Location: ' . $router->url('admin_posts'));
         exit();
     } else {

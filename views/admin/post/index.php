@@ -22,6 +22,12 @@ $link = $router->url('admin_posts');
 </div>
 <?php endif ?>
 
+<?php if (isset($_GET['create'])): ?>
+<div class="alert alert-success">
+    L'enregistrement a bien été supprimer
+</div>
+<?php endif ?>
+
 <table class="table">
     <thead>
     <th>id</th>

@@ -19,6 +19,13 @@ class Category
         return $this->id;
     }
 
+    public function setID(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
 
     public function getSLug(): ?string
     {
@@ -26,10 +33,27 @@ class Category
     }
 
 
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+
     public function getName(): ?string
     {
         return $this->name;
     }
+
+
+    public function setName(string $Name): self
+    {
+        $this->name = $Name;
+
+        return $this;
+    }
+
 
     public function getPostID(): ?int
     {

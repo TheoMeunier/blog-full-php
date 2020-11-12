@@ -35,4 +35,12 @@ class CategoryTable extends Table
         }
     }
 
+    //fonction qui permet de recupèrer tout les enregistrements
+    public function all(): array
+    {
+        $sql = "SELECT * FROM {$this->table} ORDER BY id DESC";
+        return $this->pdo->query($sql, PDO::FETCH_CLASS, $this->class)->fetchAll();
+    }
+
+
 }

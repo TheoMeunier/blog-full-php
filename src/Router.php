@@ -65,13 +65,17 @@ class Router
         $view = $match['target'];
         $params = $match['params'];
         $router = $this;
+        //on regarde si nous sommes dans l'administration
+        $isAdmin = strpos($view, 'admin/') !== false;
+        //on definié le layout qu'il faut utiliser
+        $layout = $isAdmin ? 'admin/layouts/default' : 'layouts/default';
         ob_start();
 
         require $this->viewPath . DIRECTORY_SEPARATOR . $view. '.php';
 
         //on lit qui que contant est la partie section de la page
         $content = ob_get_clean();
-        require $this->viewPath .DIRECTORY_SEPARATOR . 'layouts/default.php';
+        require $this->viewPath .DIRECTORY_SEPARATOR . $layout . '.php';
 
         return $this;
     }
