@@ -83,6 +83,14 @@ class Post
         return $this->id;
     }
 
+    //on lui difinie qui aura un entier ou il sera null
+    public function setID(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     /**
      * @return Category[]
      */

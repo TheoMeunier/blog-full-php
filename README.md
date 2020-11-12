@@ -105,3 +105,8 @@ et nous avons aussi changer la requet SQL pour update
 ## 14. Validée les donnée 
 
 Nous avons vu comment simplifier le code pour validé notre formulaire
+
+## 15. création d'un article
+
+Nous avons vu comment crée un article en modifiant la requet sql et nous avons aussi mit un boutons sur la page des
+listing

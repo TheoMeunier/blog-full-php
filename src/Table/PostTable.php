@@ -14,7 +14,7 @@ class PostTable extends Table
     protected  $table = 'post';
     protected $class = Post::class;
 
-    //on envoye les donnée a la db
+    //on change les donnée de l'aticle
     public function update(Post $post): void
     {
         $query = $this->pdo->prepare("UPDATE {$this->table} SET name = :name, slug = :slug, created_at = :created,
@@ -27,8 +27,26 @@ content = :content WHERE id = :id");
             'created' => $post->getCreatedAt()->format('Y-m-d H:i:s')
         ]);
         if ($ok === false){
-            throw new \Exception("Imposssible de supprimer l'enregistrement $id dans la table {$this->table}");
+            throw new \Exception("Imposssible de modifier l'enregistrement $id dans la table {$this->table}");
         }
+    }
+
+    //on crée un article
+    public function create(Post $post): void
+    {
+        $query = $this->pdo->prepare("INSERT INTO {$this->table} SET name = :name, slug = :slug, created_at = :created,
+content = :content");
+        $ok = $query->execute([
+            'name'=> $post->getName(),
+            'slug'=> $post->getSlug(),
+            'content'=> $post->getContent(),
+            'created' => $post->getCreatedAt()->format('Y-m-d H:i:s')
+        ]);
+        if ($ok === false){
+            throw new \Exception("Imposssible de crée l'enregistrement $id dans la table {$this->table}");
+        }
+        //on recupére l'id du post qu'on viens de créev
+        $post->setID($this->pdo->lastInsertId());
     }
 
     public function delete(int $id): void
