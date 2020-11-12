@@ -38,4 +38,24 @@ class Table
         return $result;
     }
 
+    /**
+     * Vérifie si une valeur existe dans la table
+     * @param string $field Champs a rechercher
+     * @param mixed $value Valeur a associée au champs
+     */
+    public function existe(string $field, $value, ?int $except = null): bool
+    {
+        $sql = "SELECT COUNT(id) FROM {$this->table} WHERE $field= ?";
+        //on crée un tableau qui contient nos paramétre
+        $params = [$value];
+        // si l'execption est differents de null alors
+        if ($except !== null){
+            $sql .= " AND id != ?";
+            $params[] = $except;
+        }
+        $query = $this->pdo->prepare($sql);
+        $query->execute($params);
+        return (int)$query->fetch(PDO::FETCH_NUM)[0];
+    }
+
 }

@@ -4,6 +4,7 @@ use App\Conection;
 use App\HTML\Form;
 use App\Table\PostTable;
 use App\Validator;
+use App\Validators\PostValidator;
 
 $pdo = Conection::getPDO();
 $postTable = new PostTable($pdo);
@@ -17,11 +18,9 @@ $errors = [];
 if (!empty($_POST)) {
     //on lui demande de passer les message en français
     Validator::lang('fr');
-    //on lui definir quelque mot en français
-    $v = new validator($_POST);
-    //on met des contraintes a des champs
-    $v->rule('required', ['name', 'slug']);
-    $v->rule('lengthBetween', ['name', 'slug'], 3, 250);
+    //on appel la classe PostValidator
+    $v = new PostValidator($_POST, $postTable, $post->getID());
+
     $post
         ->setName($_POST['name'])
         ->setContent($_POST['content'])
