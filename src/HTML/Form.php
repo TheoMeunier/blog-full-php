@@ -17,11 +17,13 @@ class Form
     {
         //on utilise la methode getValue et on lui passe la clé
         $value = $this->getValue($key);
+        //on sauvegarde le type
+        $type = $key === "password" ? "password" : 'text';
 
         return <<<HTML
         <div class="form-group">
                 <label for="field{$key}">{$label}</label>
-                <input type="text" id="field{$key}" class="{$this->getInputClass($key)}" name="{$key}" value="{$value}" required>
+                <input type="{$type}" id="field{$key}" class="{$this->getInputClass($key)}" name="{$key}" value="{$value}" required>
                 {$this->getErrorFeedback($key)}
                  
         </div>
@@ -82,7 +84,14 @@ HTML;
         $invalidFeedBack = '';
         //est-ce que nous avons une erreur pour la clé donner
         if(isset($this->errors[$key])){
-            return '<div class="invalid-feedback">' . implode('<br>', $this->errors[$key]) . '</div>';
+            if (is_array($this->errors[$key])){
+                //si y a un tableau alors fais comme ça
+                $error = implode('<br>', $this->errors[$key]);
+            }else{
+                //alors on met l'erreur normalement
+                $error = $this->errors[$key];
+            }
+            return '<div class="invalid-feedback">' . $error . '</div>';
         }
         return '';
     }

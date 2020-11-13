@@ -114,3 +114,7 @@ listing
 ## 15. Gestion des catégories
 Nous avons realiser la partie pour la gestion des categories, rien de trés compliqer nous avons deja eux en plusieurs 
 etapes 
+
+## 16. Authentification
+
+Nous avons vu comment mettre une restrition pour les personne non admin et une page loyout

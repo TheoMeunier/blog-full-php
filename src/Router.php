@@ -2,6 +2,7 @@
 namespace App;
 
 use AltoRouter;
+use App\Security\ForbiddenExecption;
 
 class Router
 {
@@ -62,20 +63,26 @@ class Router
     public function run(): self
     {
         $match = $this->router->match();
-        $view = $match['target'];
+        $view = $match['target'] ?: 'e404' ;
         $params = $match['params'];
         $router = $this;
         //on regarde si nous sommes dans l'administration
         $isAdmin = strpos($view, 'admin/') !== false;
         //on definié le layout qu'il faut utiliser
         $layout = $isAdmin ? 'admin/layouts/default' : 'layouts/default';
-        ob_start();
 
-        require $this->viewPath . DIRECTORY_SEPARATOR . $view. '.php';
+        try {
+            ob_start();
+            require $this->viewPath . DIRECTORY_SEPARATOR . $view. '.php';
 
-        //on lit qui que contant est la partie section de la page
-        $content = ob_get_clean();
-        require $this->viewPath .DIRECTORY_SEPARATOR . $layout . '.php';
+            //on lit qui que contant est la partie section de la page
+            $content = ob_get_clean();
+            require $this->viewPath .DIRECTORY_SEPARATOR . $layout . '.php';
+
+        }catch (ForbiddenExecption $e){
+            header('Location: ' . $this->url('login') . '?forbidden=1');
+            exit();
+        }
 
         return $this;
     }
