@@ -17,6 +17,7 @@ class CategoryTable extends Table
     {
         $postsByID = [];
         foreach($posts as $post){
+            $post->setCategories([]);
             $postsByID[$post->getID()] = $post;
         }
 
@@ -40,6 +41,17 @@ class CategoryTable extends Table
     {
         $sql = "SELECT * FROM {$this->table} ORDER BY id DESC";
         return $this->pdo->query($sql, PDO::FETCH_CLASS, $this->class)->fetchAll();
+    }
+
+    public function list(): array
+    {
+        $sql = "SELECT * FROM {$this->table} ORDER BY name ASC";
+        $categories = $this->pdo->query($sql, PDO::FETCH_CLASS, $this->class)->fetchAll();
+        $results = [];
+        foreach ($categories as $category) {
+            $results[$category->getID()] = $category->getName();
+        }
+        return $results;
     }
 
 

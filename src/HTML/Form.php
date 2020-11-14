@@ -45,8 +45,30 @@ HTML;
 HTML;
     }
 
+    public function select(string $key, string $label, array $options = []): string
+    {
+        $optionsHTML = [];
+        //on recupere la valeur
+        $value = $this->getValue($key);
+        foreach ($options as $k => $v){
+            $selected = in_array($k, $value) ? " selected" : "";
+            $optionsHTML[] = "<option  value=\"$k\"$selected>$v</option>";
+        }
+        //on crée un tableau qui permet de liste les catégory
+        $optionsHTML = implode('', $optionsHTML);
+
+        return <<<HTML
+        <div class="form-group">
+                <label for="field{$key}">{$label}</label>
+                <select id="field{$key}" class="{$this->getInputClass($key)}" name="{$key}[]" required multiple>{$optionsHTML}</select>
+                {$this->getErrorFeedback($key)}
+                 
+        </div>
+HTML;
+    }
+
     //on verifier si data est un tableau
-    private function getValue(string $key): ?string
+    private function getValue(string $key)
     {
         if (is_array($this->data)){
             //on verifie que la donnée existe et on la retune

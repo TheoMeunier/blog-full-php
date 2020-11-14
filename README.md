@@ -111,10 +111,14 @@ Nous avons vu comment simplifier le code pour validé notre formulaire
 Nous avons vu comment crée un article en modifiant la requet sql et nous avons aussi mit un boutons sur la page des
 listing
 
-## 15. Gestion des catégories
+## 16. Gestion des catégories
 Nous avons realiser la partie pour la gestion des categories, rien de trés compliqer nous avons deja eux en plusieurs 
 etapes 
 
-## 16. Authentification
+## 17. Authentification
 
-Nous avons vu comment mettre une restrition pour les personne non admin et une page loyout
+Nous avons vu comment mettr
+
+## 18. Authentification
+
+Nous avons vu comment lier des categories a nos post et nous avons fais un px de clear code

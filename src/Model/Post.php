@@ -91,12 +91,34 @@ class Post
         return $this;
     }
 
+    public function getCategoriesIds(): array
+    {
+        $ids = [];
+        // je parcour l'ensemble de mes catégories
+        foreach ($this->categories as $category){
+            $ids[] = $category->getID();
+        }
+        // je return mon tableau id
+        return $ids;
+    }
+
     /**
      * @return Category[]
      */
     public function getCategories (): array
     {
         return $this->categories;
+    }
+
+
+    /**
+     * @return Category[]
+     */
+    public function setCategories (array $categories): self
+    {
+       $this->categories = $categories;
+
+       return $this;
     }
 
     //ajouter les category au post
