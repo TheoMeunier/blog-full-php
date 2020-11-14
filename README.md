@@ -119,6 +119,6 @@ etapes
 
 Nous avons vu comment mettr
 
-## 18. Authentification
+## 18. Liaisson des categories au post
 
 Nous avons vu comment lier des categories a nos post et nous avons fais un px de clear code
